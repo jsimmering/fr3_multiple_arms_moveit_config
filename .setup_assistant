@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: fr3_multiple_arms
+    relative_path: robot_description/fr3_multiple_arms.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/fr3_multiple_arms.srdf
+  CONFIG:
+    author_name: Janneke Simmering
+    author_email: jsimmering@techfak.uni-bielefeld.de
+    generated_timestamp: 1693821110
