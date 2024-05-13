@@ -1,4 +1,5 @@
 <launch>
+	<param name="ros_control_namespace" value="/franko/dual_fr3/" />
 	<!-- Define MoveIt controller manager plugin -->
 	<param name="moveit_controller_manager" value="moveit_ros_control_interface::MoveItControllerManager" />
 </launch>

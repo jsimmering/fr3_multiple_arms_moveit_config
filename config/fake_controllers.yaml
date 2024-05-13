@@ -1,38 +1,55 @@
 controller_list:
-  - name: fake_left_arm_controller
+  - name: fake_franka_controller
     type: $(arg fake_execution_type)
     joints:
-      - left_arm_joint1
-      - left_arm_joint2
-      - left_arm_joint3
-      - left_arm_joint4
-      - left_arm_joint5
-      - left_arm_joint6
-      - left_arm_joint7
-  - name: fake_right_arm_controller
+      - franka_joint1
+      - franka_joint2
+      - franka_joint3
+      - franka_joint4
+      - franka_joint5
+      - franka_joint6
+      - franka_joint7
+  - name: fake_franko_controller
     type: $(arg fake_execution_type)
     joints:
-      - right_arm_joint1
-      - right_arm_joint2
-      - right_arm_joint3
-      - right_arm_joint4
-      - right_arm_joint5
-      - right_arm_joint6
-      - right_arm_joint7
+      - franko_joint1
+      - franko_joint2
+      - franko_joint3
+      - franko_joint4
+      - franko_joint5
+      - franko_joint6
+      - franko_joint7
+  - name: fake_combined_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - franko_joint1
+      - franko_joint2
+      - franko_joint3
+      - franko_joint4
+      - franko_joint5
+      - franko_joint6
+      - franko_joint7
+      - franka_joint1
+      - franka_joint2
+      - franka_joint3
+      - franka_joint4
+      - franka_joint5
+      - franka_joint6
+      - franka_joint7
   - name: fake_left_hand_controller
     type: $(arg fake_execution_type)
     joints:
-      - left_arm_finger_joint1
-      - left_arm_finger_joint2
+      - franka_finger_joint1
+      - franka_finger_joint2
   - name: fake_right_hand_controller
     type: $(arg fake_execution_type)
     joints:
-      - right_arm_finger_joint1
-      - right_arm_finger_joint2
+      - franko_finger_joint1
+      - franko_finger_joint2
 initial:  # Define initial robot poses per group
-  - group: left_arm
+  - group: franka
     pose: ready
-  - group: right_arm
+  - group: franko
     pose: ready
   - group: left_hand
     pose: close

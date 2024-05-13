@@ -5,7 +5,9 @@
   <rosparam file="$(find fr3_multiple_arms_moveit_config)/config/ros_controllers.yaml" command="load"/>
 
   <!-- Load the controllers -->
+  <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="franko_trajectory_controller franka_trajectory_controller right_hand_controller left_hand_controller"/> -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" args="right_arm_trajectory_controller left_arm_trajectory_controller right_hand_controller left_hand_controller"/>
+    output="screen" args=""/>
 
 </launch>

@@ -13,12 +13,13 @@
 
   <arg name="start_state_max_bounds_error" default="0.1" />
   <arg name="jiggle_fraction" default="0.05" />
+  <arg name="arm_id" default="dual_fr3" />
 
   <param name="planning_plugin" value="ompl_interface/OMPLPlanner" />
   <param name="request_adapters" value="$(arg planning_adapters)" />
   <param name="start_state_max_bounds_error" value="$(arg start_state_max_bounds_error)" />
   <param name="jiggle_fraction" value="$(arg jiggle_fraction)" />
 
-  <rosparam command="load" file="$(find fr3_multiple_arms_moveit_config)/config/ompl_planning.yaml"/>
+  <rosparam command="load" file="$(find fr3_multiple_arms_moveit_config)/config/ompl_planning.yaml" subst_value="true"/>
 
 </launch>

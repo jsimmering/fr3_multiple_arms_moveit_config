@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="pipeline" default="ompl" />
+
+    <arg name="load_gripper" default="true" />
+    <arg name="transmission" default="effort" />
+
+    <!-- <include file="$(find fr3_moveit_config)/launch/fr3_gazebo.launch" pass_all_args="true">
+        <arg name="verbose"     default="false"  doc="Should more debug output be printed?" />
+        <arg name="use_gripper" default="$(arg load_gripper)" />
+        <arg name="controller" default="$(arg transmission)_joint_trajectory_controller" />
+        <arg name="unpause" default="true" />
+        <arg name="rviz"     value="false" />
+    </include> -->
+
+ 
+    <include file="$(find fr3_multiple_arms_moveit_config)/launch/demo.launch" pass_all_args="true">
+        <arg name="load_robot_description" value="true" />
+        <arg name="moveit_controller_manager" value="ros_control"/>
+        <arg name="use_rviz" value="false" />
+    </include>
+    <param name="move_group/capabilities" value="move_group/ExecuteTaskSolutionCapability" />
+
+    <!-- Run rviz with prepared config -->
+    <include file="$(find franko_fr3_hand_moveit_config)/launch/moveit_rviz.launch">
+        <arg name="rviz_config" value="$(find moveit_task_constructor_demo)/config/mtc.rviz" />
+    </include>
+</launch>
