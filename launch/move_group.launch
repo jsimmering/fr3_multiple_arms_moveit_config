@@ -41,7 +41,7 @@
 
   <arg name="load_robot_description" default="true" />
   <!-- load URDF, SRDF and joint_limits configuration -->
-  <include file="$(dirname)/planning_context.launch">
+  <include file="$(find fr3_multiple_arms_moveit_config)/launch/planning_context.launch">
     <arg name="load_robot_description" value="$(arg load_robot_description)" />
   </include>
 
@@ -49,7 +49,7 @@
   <group ns="move_group/planning_pipelines">
 
     <!-- OMPL -->
-    <include file="$(dirname)/planning_pipeline.launch.xml">
+    <include file="$(find fr3_multiple_arms_moveit_config)/launch/planning_pipeline.launch.xml">
       <arg name="pipeline" value="ompl" />
       <arg name="arm_id" value="$(arg arm_id)" />
     </include>
@@ -60,7 +60,7 @@
     </include> -->
 
     <!-- Pilz Industrial Motion -->
-    <include file="$(dirname)/planning_pipeline.launch.xml">
+    <include file="$(find fr3_multiple_arms_moveit_config)/launch/planning_pipeline.launch.xml">
       <arg name="pipeline" value="pilz_industrial_motion_planner" />
       <arg name="arm_id" value="$(arg arm_id)" />
     </include>
@@ -73,14 +73,14 @@
   </group>
 
   <!-- Trajectory Execution Functionality -->
-  <include ns="move_group" file="$(dirname)/trajectory_execution.launch.xml" if="$(arg allow_trajectory_execution)">
+  <include ns="move_group" file="$(find fr3_multiple_arms_moveit_config)/launch/trajectory_execution.launch.xml" if="$(arg allow_trajectory_execution)">
     <arg name="moveit_manage_controllers" value="true" />
     <arg name="moveit_controller_manager" value="$(arg moveit_controller_manager)" />
     <arg name="fake_execution_type" value="$(arg fake_execution_type)" />
   </include>
 
   <!-- Sensors Functionality -->
-  <include ns="move_group" file="$(dirname)/sensor_manager.launch.xml" if="$(arg allow_trajectory_execution)">
+  <include ns="move_group" file="$(find fr3_multiple_arms_moveit_config)/launch/sensor_manager.launch.xml" if="$(arg allow_trajectory_execution)">
     <arg name="moveit_sensor_manager" value="fr3_multiple_arms" />
   </include>
 

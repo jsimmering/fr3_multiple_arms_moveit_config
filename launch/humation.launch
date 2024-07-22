@@ -20,25 +20,31 @@
   </include>
 
   <arg name="arm_id" default="$(arg robot_id)" />
-  <group ns="$(arg robot_id)">
-  <rosparam command="load" file="$(find franka_example_controllers)/config/franka_example_controllers.yaml" subst_value="true" />
-  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="franka_effort_joint_trajectory_controller franko_effort_joint_trajectory_controller --stopped dual_arm_cartesian_impedance_example_controller"/>
-  <!-- <node name="interactive_marker_left" pkg="franka_example_controllers" type="dual_arm_interactive_marker.py"
-      args="/-/-left_arm_id franka /-/-right_arm_id franko" required="false" output="screen" /> -->
+  <!-- <group ns="$(arg robot_id)"> -->
+    <!-- <rosparam command="load" file="$(find franka_example_controllers)/config/franka_example_controllers.yaml" subst_value="true" /> -->
+    <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="franka_effort_joint_trajectory_controller franko_effort_joint_trajectory_controller \-\-stopped dual_arm_cartesian_impedance_example_controller"/> -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="--stopped dual_arm_cartesian_impedance_example_controller"/>
+    <!-- <node name="interactive_marker_left" pkg="franka_example_controllers" type="dual_arm_interactive_marker.py"
+        args="/-/-left_arm_id franka /-/-right_arm_id franko" required="false" output="screen" /> -->
 
-  <node name="listener_node" pkg="rqt_controller_manager" type="rqt_controller_manager" output="screen"/>
+    <node name="listener_node" pkg="rqt_controller_manager" type="rqt_controller_manager" output="screen"/>
 
-  <include file="$(find fr3_multiple_arms_moveit_config)/launch/fr3_mtc_demo.launch">
-    <arg name="load_gripper"    value="true" />
+    <include file="$(find fr3_multiple_arms_moveit_config)/launch/fr3_mtc_demo.launch">
+      <arg name="load_gripper"    value="true" />
+    </include>
+
+  <!-- </group> -->
+
+  <include file="$(find franko_moveit_examples)/launch/franko.launch">
+    <arg name="move_group" value="franko" />
+    <!-- <remap from="/franko/dual_fr3/robot_description" to="robot_description"/>
+    <remap from="/franko/dual_fr3/get_planning_scene" to="/franko/get_planning_scene"/> -->
   </include>
-  </group>
-
-  <include file="$(find franko_moveit_examples)/launch/franko.launch"/>
 
   <!-- Run MTC pick and place -->
-  <node name="mtc_tutorial" pkg="moveit_task_constructor_demo" type="pick_place_demo" output="screen">
+  <node name="mtc_tutorial" pkg="franko_mtc" type="pick_place_demo" output="screen">
     <param name="execute" value="true" />
-    <rosparam command="load" file="$(find moveit_task_constructor_demo)/config/franko_fr3_config.yaml" />
+    <rosparam command="load" file="$(find franko_mtc)/config/franko_fr3_config.yaml" />
   </node>
 
 </launch>

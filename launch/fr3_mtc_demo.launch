@@ -23,6 +23,6 @@
 
     <!-- Run rviz with prepared config -->
     <include file="$(find franko_fr3_hand_moveit_config)/launch/moveit_rviz.launch">
-        <arg name="rviz_config" value="$(find moveit_task_constructor_demo)/config/mtc.rviz" />
+        <arg name="rviz_config" value="$(find franko_mtc)/config/mtc.rviz" />
     </include>
 </launch>
